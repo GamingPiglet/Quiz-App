@@ -135,8 +135,8 @@ public class Main {
     // This is a bit of a nightmare to read. Just warning you.
     public static void checkForUpdates() {
         // Stores version number.
-        int w = 1;
-        int x = 0;
+        int w = 0;
+        int x = 2;
         int y = 0;
         int z = 0;
         boolean foundUpdate = false; // If an update is found, this becomes true.
