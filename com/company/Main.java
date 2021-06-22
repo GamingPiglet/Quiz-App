@@ -16,10 +16,14 @@ import java.util.Scanner;
 public class Main {
     private final static Scanner scanner = new Scanner(System.in); // Handles all user inputs.
     private static Quiz quiz; // Holds the quiz loaded in memory.
+    private final static int w = 1;
+    private final static int x = 0;
+    private final static int y = 1;
+    private final static int z = 1;
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to QuizApp, Version 1.0.0.1\n"); // Prints out version number.
+        System.out.println("Welcome to QuizApp, Version " + w + "." + x + "." + y + "." + z + "\n"); // Prints out version number.
         printInstructions();
         int choice; // Stores user input
         boolean quit = false;
@@ -135,10 +139,6 @@ public class Main {
     // This is a bit of a nightmare to read. Just warning you.
     public static void checkForUpdates() {
         // Stores version number.
-        int w = 1;
-        int x = 0;
-        int y = 0;
-        int z = 1;
         boolean foundUpdate = false; // If an update is found, this becomes true.
         /*
             Try and catch blocks handle exceptions, instead of letting the program crash and burn. All of this
@@ -610,13 +610,14 @@ public class Main {
 
     public static void remove() {
         if (quiz.getQuestions().size() > 0) {
-            System.out.print("Enter question or question index, or type cancel to cancel: ");
+            System.out.print("Enter question or question number, or type cancel to cancel: ");
             boolean done = false;
             while (!done) {
                 // Decides if the input is an index or a question heading.
                 if (scanner.hasNextInt()) {
                     int choice = scanner.nextInt();
                     scanner.nextLine();
+                    choice--;
                     if (choice < 0 || choice >= quiz.getQuestions().size()) {
                         if (invalidCheck()) {
                             return;
@@ -682,7 +683,7 @@ public class Main {
                             return;
                         }
                     }
-                    System.out.print("Enter question or question index, or type cancel to cancel operation: ");
+                    System.out.print("Enter question or question number, or type cancel to cancel operation: ");
                     boolean done1 = false;
                     // Initializes variables to store inputs, these values are remnants from testing.
                     int index = -1;
@@ -692,6 +693,7 @@ public class Main {
                         if (scanner.hasNextInt()) {
                             index = scanner.nextInt();
                             scanner.nextLine();
+                            index--;
                             // Checks if index is out of bounds.
                             if (index < 0 || index >= quiz.getQuestions().size()) {
                                 if (invalidCheck()) {
